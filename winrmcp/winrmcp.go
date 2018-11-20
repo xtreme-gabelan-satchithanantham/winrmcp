@@ -25,7 +25,6 @@ type Config struct {
 	ConnectTimeout        time.Duration
 	OperationTimeout      time.Duration
 	MaxOperationsPerShell int
-	TransportDecorator    func() winrm.Transporter
 }
 
 type Auth struct {
@@ -47,10 +46,6 @@ func New(addr string, config *Config) (*Winrmcp, error) {
 		winrm.DefaultParameters.Locale,
 		winrm.DefaultParameters.EnvelopeSize,
 	)
-
-	if config.TransportDecorator != nil {
-		params.TransportDecorator = config.TransportDecorator
-	}
 
 	if config.OperationTimeout.Seconds() > 0 {
 		params.Timeout = iso8601.FormatDuration(config.OperationTimeout)

@@ -35,13 +35,11 @@ func parseEndpoint(addr string, https bool, insecure bool, tlsServerName string,
 	}
 
 	return &winrm.Endpoint{
-		Host:          host,
-		Port:          port,
-		HTTPS:         https,
-		Insecure:      insecure,
-		TLSServerName: tlsServerName,
-		CACert:        caCert,
-		Timeout:       timeout,
+		Host:     host,
+		Port:     port,
+		HTTPS:    https,
+		Insecure: insecure,
+		Timeout:  timeout,
 	}, nil
 }
 
